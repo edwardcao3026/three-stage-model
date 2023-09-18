@@ -5,7 +5,7 @@ ________________________________________________________________________________
 ## Requirements
 - Mathematica v13.2.1.0
 - pandas v1.3.2
-- numpy  1.16.5$\le$v$\le$1.23.0
+- numpy  1.16.5$$\le$$v$$\le$$1.23.0
 - scipy v1.7.1
 ## File description
 - "SSA_model _II _t10.csv" is SSA result for Model II.
