@@ -1,4 +1,6 @@
 # Three-stage model of stochastic gene expression
+[![DOI](https://zenodo.org/badge/680477830.svg)](https://zenodo.org/badge/latestdoi/680477830)
+
 This library provides data and codes for the manuscript [Exact solution of a three-stage model of stochastic gene expression including
 cell-cycle dynamics](https://www.biorxiv.org/content/10.1101/2023.08.29.555255v2.full.pdf).
 
