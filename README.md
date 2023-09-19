@@ -1,22 +1,24 @@
-# Three-stage-model
-This library provides simulation codes for [Exact solution of a three-stage model of stochastic gene expression including
-cell-cycle dynamics](https://www.biorxiv.org/content/10.1101/2023.08.29.555255v2.full.pdf)
+# Three-stage model of stochastic gene expression
+This library provides data and codes for the manuscript [Exact solution of a three-stage model of stochastic gene expression including
+cell-cycle dynamics](https://www.biorxiv.org/content/10.1101/2023.08.29.555255v2.full.pdf).
+
 ________________________________________________________________________________________________________
 ## Requirements
 - Mathematica v13.2.1.0
 - pandas v1.3.2
-- numpy  1.16.5$$\le$$v$$\le$$1.23.0
+- numpy  v1.16.5～v1.23.0
 - scipy v1.7.1
 ## File description
-- "SSA_model _II _t10.csv" is SSA result for Model II.
-- "exact_solution_Model_II.nb" is exact solution for Model II.
-- "population_SSA_IV.ipynb" is population SSA for Model IV.
-- "stationary_statistics_Model_III.nb" is exact solution for Model III.
+- "SSA_model _II _t10.csv" stores example data of Model II simulated by SSA.
+- "exact_solution_Model_II.nb" computes the exact distributions of protein numbers of Model II in Mathematica.
+- "population_SSA_IV.ipynb" generates SSA data for cell population in Model IV.
+- "stationary_statistics_Model_III.nb"  computes the stationary gene
+  product number statistics of Models I & III.
 
 ## Examples
 __1. Exact solution of Model II.__  
 
-The full time domain exact protein distribution of Model II can be obtained by using
+The time-dependent exact distribution of protein counts of Model II is calculated from the generating function by the following piece code.
 ```
 G = G0 + G1 /. param;
 Bins = 80;
@@ -25,28 +27,31 @@ PP = ResourceFunction["NSeries"][Gp, {w2, -1, Bins}][[3]];
 v = Table[{i - Bins - 1, Re[PP[[i]]]}, {i, Bins + 1, 2*Bins + 1}];
 pG = ListPlot[v, PlotRange -> All]
 ```
-`G` is the generating function. If you care about the probability distribution of mRNA, swap the positions of w1 and w2. For more details, please refer to [exact_solution_Model_II.nb]().
+`G` is the generating function. If one is interested in the probability distribution of mRNA, switch the positions of w1 and w2 in the codes above. For more details, please refer to the notes in [exact_solution_Model_II.nb]().
 
-__2. The population SSA of Model IV.__  
+__2. SSA for a unsynchronized cell population of Model IV.__  
 
-The population SSA results of Model IV can be invoked with `population_SSA`
+ `population_SSA` generates the gene product counts for a unsynchronized cell population of Model IV, which was adapted from the codes of Ref. [1]
 ```
 data=population_SSA(m0,G0,G1,p0,t0,phase0,age0,Tmax,Ncycle,Tcycle,son,soff,rho,lam,dm)
 ```
-`G0`,`G1`,`m0`,`p0`,`t0`,`phase0`,`age0` are initial conditions.  
-`Tmax` is simulation ending time.  
-Calculate the parameter `k` for the exponential distribution by using `k`=`Ncycle`/`Tcycle`.  
-`son`,`sof`,`rho`,`lam`,`dm` are kintic parameters.  
-`data` is a matrix with seven rows, stores values of 
-absolute time、 acitve gene、 inactive gene、 mRNA、 protein、 cell age and cell phase respectively. For more details, please refer to [population_SSA_IV.ipynb]().  
+`G0`,`G1`,`m0`,`p0`,`t0`,`phase0`,`age0` are the initial conditions.  
+`Tmax` is the total simulation time.  
+The parameter `k` for the exponential distribution is calculated by using `k`=`Ncycle`/`Tcycle`.  
+`son`,`sof`,`rho`,`lam`,`dm` are the kinetic parameters.  
+`data` is a matrix storing the information of
+absolute time、 acitve gene、 inactive gene、 mRNA、 protein、 cell age and cell phase, each of which is represented by a rwo in `data`. For more details, please refer to the notes in [population_SSA_IV.ipynb]().  
 
 __3. The exact statistics of Model III.__  
 
-The exact statistics of Model III in stationary state can be obtained by [stationary_statistics_Model_III.nb]()
+[stationary_statistics_Model_III.nb]() compares the stationary mRNA and protein statistics of Models I & III.
 
 
 ## Reference
+[1] Beentjes, C. H., Perez-Carrasco, R., & Grima, R. (2020). [Exact solution of stochastic gene expression models with bursting, cell cycle and replication dynamics](https://journals.aps.org/pre/pdf/10.1103/PhysRevE.101.032403?casa_token=7ZbwkB0N77wAAAAA%3AFoM22TR7q45nanerhg1LpWNx4WfMr1Uk5Db0BV5er0s6i1kC0V_2m_claH3F7NQMR1pgUeJvEulG5Qmr). *Physical Review E*, *101*(3), 032403.
+
 If you found this library useful in your research, please consider citing.
+
 ```
 @article{wang2023exact,
   title={Exact solution of a three-stage model of stochastic gene expression model including cell-cycle dynamics},
