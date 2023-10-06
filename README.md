@@ -56,7 +56,7 @@ If you found this library useful in your research, please consider citing.
 
 ```
 @article{wang2023exact,
-  title={Exact solution of a three-stage model of stochastic gene expression model including cell-cycle dynamics},
+  title={Exact solution of a three-stage model of stochastic gene expression including cell-cycle dynamics},
   author={Wang, Yiling and Yu, Zhenhua and Cao, Zhixing and Grima, Ramon},
   journal={bioRxiv},
   pages={2023--08},
